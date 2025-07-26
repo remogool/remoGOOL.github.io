@@ -2,6 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/fireba
 import {
   getDatabase, ref, onValue, query, orderByChild
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+import {
+  getAuth, signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAn8b-8bUDCNVWmdim5MCeKpcz3kA5XhUU",
@@ -14,6 +17,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const db = getDatabase(app);
 
 const listEl = document.getElementById('list');
@@ -255,10 +259,22 @@ function toBaghdadTimeString(date) {
 statusFilter.addEventListener('change', render);
 searchFilter.addEventListener('input', render);
 
-const matchesRef = query(ref(db, 'matches'), orderByChild('startTime'));
-onValue(matchesRef, (snap) => {
-  const val = snap.val() || {};
-  allMatches = Object.keys(val).map(id => ({ id, ...val[id] }));
-  updateDateDisplay();
-  render();
-});
+// تسجيل الدخول أولاً
+const authEmail = 'users@rmatch1242e.com';
+const authPassword = 'Hwif7wjr92os@9#9kwc#8q';
+
+signInWithEmailAndPassword(auth, authEmail, authPassword)
+  .then((userCredential) => {
+    // تم تسجيل الدخول بنجاح، الآن يمكن الاتصال بقاعدة البيانات
+    const matchesRef = query(ref(db, 'matches'), orderByChild('startTime'));
+    onValue(matchesRef, (snap) => {
+      const val = snap.val() || {};
+      allMatches = Object.keys(val).map(id => ({ id, ...val[id] }));
+      updateDateDisplay();
+      render();
+    });
+  })
+  .catch((error) => {
+    console.error('فشل تسجيل الدخول:', error);
+    listEl.innerHTML = '<div class="no-matches">خطأ في الاتصال بالخادم. يرجى المحاولة لاحقاً</div>';
+  });
