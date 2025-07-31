@@ -1,55 +1,11 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Remo TV - جدول المباريات</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <img src="assets/logo.png" alt="Remo TV" class="logo">
-    </header>
-
-    <div class="date-navigation">
-      <button class="date-nav-btn" id="nextDayBtn">→</button>
-      <div class="current-date" id="currentDateDisplay"></div>
-      <button class="date-nav-btn" id="prevDayBtn">←</button>
-    </div>
-
-    <div class="filters">
-      <select id="statusFilter">
-        <option value="">جميع المباريات</option>
-        <option value="upcoming">القادمة</option>
-        <option value="live">المباشرة</option>
-        <option value="finished">المنتهية</option>
-      </select>
-      
-      <input type="text" id="searchFilter" placeholder="ابحث باسم البطولة أو الفريق" />
-    </div>
-    
-    <div id="list"></div>
-  </div>
-
-  <!-- Modal for Streams -->
-  <div id="streamsModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">القنوات الناقلة للمباراة</h3>
-        <button class="close-modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div id="modalMatchInfo" style="margin-bottom: 1rem;"></div>
-        <div class="stream-list" id="streamsList"></div>
-      </div>
-    </div>
-  </div>
-
-  <script type="module" src="js/script.js"></script>
-  <script src="js/protection.js"></script>
-</body>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url=https://remogoal.netlify.app/">
+    <style>
+      body { display: none; }
+    </style>
+  </head>
+  <body>
+  </body>
 </html>
